@@ -7,16 +7,10 @@ The original implementation is compared against a new model using Stable Baselin
 
 ## Installation
 
-You should already have Python 3.8+, Java 8+, and CUDA 10.1+ installed.
-
-Install MicroRTS JAR:
-```bash
-rm -fR ~/microrts && mkdir ~/microrts && \
-    wget -O ~/microrts/microrts.zip http://microrts.s3.amazonaws.com/microrts/artifacts/202004222224.microrts.zip && \
-    unzip ~/microrts/microrts.zip -d ~/microrts/
-```
+- Can't use python3.10, use python3.9 instead.
 
 Then install the necessary Python packages:
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -49,6 +43,7 @@ This script makes use of SB3's [core PPO algorithm](https://stable-baselines3.re
 ### SB3
 
 The results in the zoo were produced via the following commands:
+
 ```bash
 # 4x4 unmasked
 python sb3/train_ppo.py zoo 4
@@ -72,6 +67,7 @@ python sb3/train_ppo.py zoo 10  --mask --seed 44
 ```
 
 You may view the results in the zoo for yourself by running:
+
 ```bash
 # For 4x4 environment
 tensorboard --logdir zoo/4x4/runs
