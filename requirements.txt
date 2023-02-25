@@ -1,6 +1,5 @@
-Pillow
 click
-gym-microrts
+gym-microrts==0.1.3
 sb3-contrib
 stable-baselines3
 tensorboard
