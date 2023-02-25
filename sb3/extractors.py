@@ -63,7 +63,9 @@ def make_extractor_class(map_size: int) -> BaseFeaturesExtractor:
             n_input_channels = observation_space.shape[-1]
             if map_size == "10":
                 self.cnn = nn.Sequential(
-                    layer_init(nn.Conv2d(n_input_channels, 16, kernel_size=3, stride=2)),
+                    layer_init(
+                        nn.Conv2d(n_input_channels, 16, kernel_size=3, stride=2)
+                    ),
                     nn.ReLU(),
                     layer_init(nn.Conv2d(16, 32, kernel_size=2)),
                     nn.Flatten(),
@@ -75,7 +77,9 @@ def make_extractor_class(map_size: int) -> BaseFeaturesExtractor:
                     nn.Flatten(),
                 )
             else:
-                raise ValueError(f"Invalid map size {map_size}. Options: f{VALID_SIZES}")
+                raise ValueError(
+                    f"Invalid map size {map_size}. Options: f{VALID_SIZES}"
+                )
 
             # Compute shape by doing one forward pass
             with th.no_grad():

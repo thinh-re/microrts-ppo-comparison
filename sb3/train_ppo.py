@@ -39,7 +39,6 @@ max_grad_norm = 0.5
 learning_rate = 2.5e-4
 
 
-
 def mask_fn(env: gym.Env) -> np.ndarray:
     # Uncomment to make masking a no-op
     # return np.ones_like(env.action_mask)
@@ -53,7 +52,7 @@ def get_wrapper(env: gym.Env) -> gym.Env:
 # Maintain a similar CLI to the original paper's implementation
 @click.command()
 @click.argument("output_folder", type=click.Path())
-@click.argument("map_size", type=click.Choice(['4', '10']))
+@click.argument("map_size", type=click.Choice(["4", "10"]))
 @click.option("--load", "-l", "load_path")
 @click.option("--seed", type=int, default=Defaults.SEED, help="seed of the experiment")
 @click.option(
@@ -86,7 +85,9 @@ def get_wrapper(env: gym.Env) -> gym.Env:
     help="Coefficient for entropy component of loss function",
 )
 @click.option(
-    "--mask/--no-mask", default=False, help="if toggled, enable invalid action masking",
+    "--mask/--no-mask",
+    default=False,
+    help="if toggled, enable invalid action masking",
 )
 @click.option(
     "--wandb/--no-wandb",
@@ -154,7 +155,9 @@ def train(
         Alg = PPO
         EvalCallbackCls = EvalCallback
 
-    eval_callback = EvalCallbackCls(eval_env, eval_freq=max(eval_freq // n_envs, 1), n_eval_episodes=eval_episodes)
+    eval_callback = EvalCallbackCls(
+        eval_env, eval_freq=max(eval_freq // n_envs, 1), n_eval_episodes=eval_episodes
+    )
 
     lr = lambda progress_remaining: progress_remaining * learning_rate
 
@@ -194,11 +197,14 @@ def train(
 
     if mask:
         model.learn(
-            total_timesteps=total_timesteps, callback=callbacks, use_masking=mask,
+            total_timesteps=total_timesteps,
+            callback=callbacks,
+            use_masking=mask,
         )
     else:
         model.learn(
-            total_timesteps=total_timesteps, callback=callbacks,
+            total_timesteps=total_timesteps,
+            callback=callbacks,
         )
 
     model.save(str(base_output / f"models/{timestring}"))
