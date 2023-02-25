@@ -1,7 +1,6 @@
 import numpy as np
 from gym_microrts import microrts_ai
 from gym_microrts.envs.vec_env import MicroRTSGridModeVecEnv
-from torch import Tensor
 
 # if you want to record videos, install stable-baselines3 and use its `VecVideoRecorder`
 # from stable_baselines3.common.vec_env import VecVideoRecorder
@@ -60,4 +59,5 @@ for i in range(10000):
     # doing the following could result in invalid actions
     # action = np.array([envs.action_space.sample()])
     next_obs, reward, done, info = envs.step(action)
+
 envs.close()
