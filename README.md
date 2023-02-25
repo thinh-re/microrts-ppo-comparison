@@ -9,6 +9,14 @@ The original implementation is compared against a new model using Stable Baselin
 
 - Can't use python3.10, use python3.9 instead.
 
+Install MicroRTS JAR:
+
+```bash
+rm -fR ~/microrts && mkdir ~/microrts && \
+    wget -O ~/microrts/microrts.zip http://microrts.s3.amazonaws.com/microrts/artifacts/202004222224.microrts.zip && \
+    unzip ~/microrts/microrts.zip -d ~/microrts/
+```
+
 Then install the necessary Python packages:
 
 ```bash
